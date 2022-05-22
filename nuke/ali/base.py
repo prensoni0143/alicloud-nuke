@@ -1,7 +1,7 @@
 class Command:
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self, client) -> None:
+        self.client = client
 
     def list(self):
         pass
