@@ -4,8 +4,6 @@ from typing import List, Tuple
 from aliyunsdkcore.client import AcsClient
 from nuke.ali.vpc import VPC
 
-regional_clients_registry = {}
-
 
 def list_all_regions() -> List[str]:
     """Get Ali Cloud region by checking allowed region for VPC.
@@ -42,10 +40,3 @@ def get_regional_client(region_id: str) -> AcsClient:
     )
     client.set_region_id(region=region_id)
     return client
-
-
-# update global regional_clients_registry when util script is imported
-region_ids = list_all_regions()
-
-for region in region_ids:
-    regional_clients_registry[region] = get_regional_client(region)

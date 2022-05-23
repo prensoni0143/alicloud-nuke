@@ -1,6 +1,5 @@
 import json
 from typing import Dict, List
-from unittest import result
 
 from aliyunsdkvpc.request.v20160428 import DescribeVSwitchesRequest
 from nuke.ali.base import Command
@@ -28,7 +27,7 @@ class Switch(Command):
                 "ZoneId": x.get("ZoneId", ""),
                 "CreationTime": x.get("CreationTime", "")
             })
-        return result
+        return results
 
     def delete(self):
         print("delete vpc")
