@@ -1,7 +1,10 @@
 import json
 from typing import Dict, List
 
-from aliyunsdkvpc.request.v20160428 import (DescribeRegionsRequest,
+from aliyunsdkcore.acs_exception.exceptions import (ClientException,
+                                                    ServerException)
+from aliyunsdkvpc.request.v20160428 import (DeleteVpcRequest,
+                                            DescribeRegionsRequest,
                                             DescribeVpcsRequest)
 from nuke.ali.base import Command
 
@@ -37,8 +40,20 @@ class VPC(Command):
                 )
         return results
 
-    def delete(self):
-        print("delete vpc")
+    def delete(self, data: Dict[str, str]):
+        try:
+            id = data.get("VpcId")
+            request = DeleteVpcRequest.DeleteVpcRequest()
+            request.set_VpcId(id)
+
+            print(f"delete {data}")
+            response = self.client.do_action_with_exception(request)
+            response_json = json.loads(response)
+            return response_json
+        except ServerException as e:
+            print(f"failed to delete: {e}")
+        except ClientException as e:
+            print(f"failed to delete: {e}")
 
     def list_regions(self) -> List[str]:
         request = DescribeRegionsRequest.DescribeRegionsRequest()

@@ -1,3 +1,5 @@
+from typing import Dict, List
+
 from aliyunsdkcore.client import AcsClient
 
 
@@ -10,5 +12,5 @@ class Command:
     def list(self):
         pass
 
-    def delete(self):
+    def delete(self, data: Dict[str, str]):
         pass

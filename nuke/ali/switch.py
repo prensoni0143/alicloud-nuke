@@ -39,20 +39,17 @@ class Switch(Command):
                 )
         return results
 
-    def delete(self, id: str):
+    def delete(self, data: Dict[str, str]):
         try:
+            id = data.get("VSwitchId")
             request = DeleteVSwitchRequest.DeleteVSwitchRequest()
-            # The ID of the vSwitch that you want to delete.
             request.set_VSwitchId(id)
-            
+
+            print(f"delete {data}")
             response = self.client.do_action_with_exception(request)
             response_json = json.loads(response)
-            # Check whether the vSwitch is deleted.
-            # if self.check_status(self.TIME_DEFAULT_OUT, self.DEFAULT_TIME * 5,
-            #                      self.describe_vswitch_status,
-            #                      '', id):
             return response_json
         except ServerException as e:
-            print(e)
+            print(f"failed to delete: {e}")
         except ClientException as e:
-            print(e)
+            print(f"failed to delete: {e}")
