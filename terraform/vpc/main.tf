@@ -1,5 +1,14 @@
-provider "random" {
-
+terraform {
+  required_providers {
+    alicloud = {
+      source  = "hashicorp/alicloud"
+      version = "1.168.0"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.2.0"
+    }
+  }
 }
 
 provider "alicloud" {
@@ -17,7 +26,6 @@ resource "random_string" "rg" {
   upper   = false
   special = false
 }
-
 
 resource "alicloud_resource_manager_resource_group" "this" {
   resource_group_name = "rg-${resource.random_string.rg.id}"
@@ -59,8 +67,8 @@ module "vpc_zjk" {
   vpc_cidr          = "172.17.0.0/16"
   resource_group_id = alicloud_resource_manager_resource_group.this.id
 
-  availability_zones = ["cn-zhangjiakou-a", "cn-zhangjiakou-b", "cn-zhangjiakou-c"]
-  vswitch_cidrs      = ["172.17.0.0/19", "172.17.32.0/20", "172.17.48.0/20"]
+  availability_zones = ["cn-zhangjiakou-a", "cn-zhangjiakou-b", "cn-zhangjiakou-c", "cn-zhangjiakou-a", "cn-zhangjiakou-b", "cn-zhangjiakou-c", "cn-zhangjiakou-a", "cn-zhangjiakou-b", "cn-zhangjiakou-c", "cn-zhangjiakou-a", "cn-zhangjiakou-b", "cn-zhangjiakou-c", "cn-zhangjiakou-b", "cn-zhangjiakou-c"]
+  vswitch_cidrs      = ["172.17.0.0/20", "172.17.16.0/20", "172.17.32.0/20", "172.17.48.0/20", "172.17.64.0/20", "172.17.80.0/20", "172.17.96.0/20", "172.17.112.0/20", "172.17.128.0/20", "172.17.144.0/20", "172.17.160.0/20", "172.17.176.0/20", "172.17.192.0/19", "172.17.224.0/19"]
 
   vpc_tags = {
     Owner       = "nuker"

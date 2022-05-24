@@ -1,4 +1,5 @@
 class Command:
+    PAGE_SIZE = 5
 
     def __init__(self, client) -> None:
         self.client = client
