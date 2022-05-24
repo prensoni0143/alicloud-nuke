@@ -44,6 +44,7 @@ class Switch(Command):
             request = DeleteVSwitchRequest.DeleteVSwitchRequest()
             # The ID of the vSwitch that you want to delete.
             request.set_VSwitchId(id)
+            
             response = self.client.do_action_with_exception(request)
             response_json = json.loads(response)
             # Check whether the vSwitch is deleted.
