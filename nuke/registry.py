@@ -13,15 +13,15 @@ command_registry: Dict[str, Command] = {}
 regional_clients_registry: List[Dict[str, AcsClient]] = {}
 
 
-def register_command(name, instance):
-    command_registry[name] = instance
+def register_command(name, class_name):
+    command_registry[name] = class_name
 
 
 def register():
     # update global command_registry
     register_command(Switch.name, Switch)
     register_command(VPC.name, VPC)
-    # register_command(ECS.name, ECS)
+    register_command(ECS.name, ECS)
 
     # update global regional_clients_registry
     region_ids = list_all_regions()
