@@ -59,8 +59,8 @@ class VPC(Command):
         request = DescribeRegionsRequest.DescribeRegionsRequest()
         response: bytes = self.client.do_action_with_exception(request)
 
-        data = json.loads(response.decode("UTF-8")
-                          ).get("Regions", {}).get("Region", [])
+        r_json = json.loads(response.decode("UTF-8"))
+        data = r_json.get("Regions", {}).get("Region", [])
         regions = [x.get("RegionId") for x in data]
 
         return regions
