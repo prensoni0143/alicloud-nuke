@@ -1,0 +1,24 @@
+{
+    "SecurityGroups": {
+        "SecurityGroup": [
+            {
+                "Description": "",
+                "VpcId": "vpc-m5elbk0ivq9aqxhfhvl8e",
+                "ServiceManaged": False,
+                "SecurityGroupName": "sg-nuke-qd-01",
+                "ResourceGroupId": "",
+                "SecurityGroupId": "sg-m5e7vo3eh0iwdxu347w0",
+                "CreationTime": "2022-05-26T01:56:02Z",
+                "SecurityGroupType": "normal",
+                "Tags": {
+                    "Tag": []
+                }
+            }
+        ]
+    },
+    "TotalCount": 1,
+    "PageSize": 5,
+    "RequestId": "735A0812-7170-5B4F-9B6E-F9C3D9A788C8",
+    "PageNumber": 1,
+    "RegionId": "cn-qingdao"
+}

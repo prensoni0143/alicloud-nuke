@@ -1,0 +1,63 @@
+{
+    "TotalCount": 1,
+    "Vpcs": {
+        "Vpc": [
+            {
+                "Status": "Available",
+                "IsDefault": false,
+                "CenStatus": "Detached",
+                "Description": "A new VPC created by Terrafrom module terraform-alicloud-vpc",
+                "ResourceGroupId": "rg-aekzadzxubokbza",
+                "VSwitchIds": {
+                    "VSwitchId": [
+                        "vsw-m5etvq1sm88mrf6ko1jhz",
+                        "vsw-m5ek6jjg4l5u8lf3w11de"
+                    ]
+                },
+                "SecondaryCidrBlocks": {
+                    "SecondaryCidrBlock": []
+                },
+                "CidrBlock": "172.16.0.0/16",
+                "RouterTableIds": {
+                    "RouterTableIds": [
+                        "vtb-m5ek4oitywfh5uh38kay7"
+                    ]
+                },
+                "UserCidrs": {
+                    "UserCidr": []
+                },
+                "NetworkAclNum": 0,
+                "AdvancedResource": false,
+                "VRouterId": "vrt-m5eii76hdj5voplcsjtke",
+                "NatGatewayIds": {
+                    "NatGatewayIds": []
+                },
+                "VpcId": "vpc-m5eq4don4b8bqyx5ebsrx",
+                "OwnerId": 5987653222476286,
+                "CreationTime": "2022-05-22T20:50:16Z",
+                "VpcName": "nuke-vpc-qd-01",
+                "RegionId": "cn-qingdao",
+                "Ipv6CidrBlock": "",
+                "Tags": {
+                    "Tag": [
+                        {
+                            "Value": "nuker",
+                            "Key": "Owner"
+                        },
+                        {
+                            "Value": "dev",
+                            "Key": "Environment"
+                        },
+                        {
+                            "Value": "nuke-vpc-qd-01",
+                            "Key": "Name"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "PageSize": 10,
+    "RequestId": "4277B1A1-4466-5063-89CE-FD280C05FC00",
+    "PageNumber": 1
+}

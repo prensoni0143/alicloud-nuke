@@ -1,0 +1,142 @@
+{
+    "RequestId": "6D0E84D5-F21D-51A1-82D9-0DBBFE84ACD8",
+    "Regions": {
+        "Region": [
+            {
+                "RegionId": "cn-qingdao",
+                "RegionEndpoint": "vpc.aliyuncs.com",
+                "LocalName":"\xe5\x8d\x8e\xe5\x8c\x97 1"
+            },
+            {
+                "RegionId": "cn-beijing",
+                "RegionEndpoint": "vpc.aliyuncs.com",
+                "LocalName":"\xe5\x8d\x8e\xe5\x8c\x97 2"
+            },
+            {
+                "RegionId": "cn-zhangjiakou",
+                "RegionEndpoint": "vpc.cn-zhangjiakou.aliyuncs.com",
+                "LocalName":"\xe5\x8d\x8e\xe5\x8c\x97 3"
+            },
+            {
+                "RegionId": "cn-huhehaote",
+                "RegionEndpoint": "vpc.cn-huhehaote.aliyuncs.com",
+                "LocalName":"\xe5\x8d\x8e\xe5\x8c\x97 5"
+            },
+            {
+                "RegionId": "cn-wulanchabu",
+                "RegionEndpoint": "vpc.cn-wulanchabu.aliyuncs.com",
+                "LocalName":"\xe5\x8d\x8e\xe5\x8c\x976\xef\xbc\x88\xe4\xb9\x8c\xe5\x85\xb0\xe5\xaf\x9f\xe5\xb8\x83\xef\xbc\x89"
+            },
+            {
+                "RegionId": "cn-hangzhou",
+                "RegionEndpoint": "vpc.aliyuncs.com",
+                "LocalName":"\xe5\x8d\x8e\xe4\xb8\x9c 1"
+            },
+            {
+                "RegionId": "cn-shanghai",
+                "RegionEndpoint": "vpc.aliyuncs.com",
+                "LocalName":"\xe5\x8d\x8e\xe4\xb8\x9c 2"
+            },
+            {
+                "RegionId": "cn-nanjing",
+                "RegionEndpoint": "vpc-smarthosting.cn-hangzhou-cloudstone.aliyuncs.com",
+                "LocalName":"\xe5\x8d\x8e\xe4\xb8\x9c5\xef\xbc\x88\xe5\x8d\x97\xe4\xba\xac\xef\xbc\x89"
+            },
+            {
+                "RegionId": "cn-shenzhen",
+                "RegionEndpoint": "vpc.aliyuncs.com",
+                "LocalName":"\xe5\x8d\x8e\xe5\x8d\x97 1"
+            },
+            {
+                "RegionId": "cn-guangzhou",
+                "RegionEndpoint": "vpc.cn-guangzhou.aliyuncs.com",
+                "LocalName":"\xe5\x8d\x8e\xe5\x8d\x973\xef\xbc\x88\xe5\xb9\xbf\xe5\xb7\x9e\xef\xbc\x89"
+            },
+            {
+                "RegionId": "cn-hongkong",
+                "RegionEndpoint": "vpc.aliyuncs.com",
+                "LocalName":"\xe9\xa6\x99\xe6\xb8\xaf"
+            },
+            {
+                "RegionId": "ap-northeast-1",
+                "RegionEndpoint": "vpc.ap-northeast-1.aliyuncs.com",
+                "LocalName":"\xe4\xba\x9a\xe5\xa4\xaa\xe4\xb8\x9c\xe5\x8c\x97 1 (\xe4\xb8\x9c\xe4\xba\xac)"
+            },
+            {
+                "RegionId": "ap-southeast-1",
+                "RegionEndpoint": "vpc.aliyuncs.com",
+                "LocalName":"\xe4\xba\x9a\xe5\xa4\xaa\xe4\xb8\x9c\xe5\x8d\x97 1 (\xe6\x96\xb0\xe5\x8a\xa0\xe5\x9d\xa1)"
+            },
+            {
+                "RegionId": "ap-southeast-2",
+                "RegionEndpoint": "vpc.ap-southeast-2.aliyuncs.com",
+                "LocalName":"\xe4\xba\x9a\xe5\xa4\xaa\xe4\xb8\x9c\xe5\x8d\x97 2 (\xe6\x82\x89\xe5\xb0\xbc)"
+            },
+            {
+                "RegionId": "ap-southeast-3",
+                "RegionEndpoint": "vpc.ap-southeast-3.aliyuncs.com",
+                "LocalName":"\xe4\xba\x9a\xe5\xa4\xaa\xe4\xb8\x9c\xe5\x8d\x97 3 (\xe5\x90\x89\xe9\x9a\x86\xe5\x9d\xa1)"
+            },
+            {
+                "RegionId": "ap-southeast-5",
+                "RegionEndpoint": "vpc.ap-southeast-5.aliyuncs.com",
+                "LocalName":"\xe4\xba\x9a\xe5\xa4\xaa\xe4\xb8\x9c\xe5\x8d\x97 5 (\xe9\x9b\x85\xe5\x8a\xa0\xe8\xbe\xbe)"
+            },
+            {
+                "RegionId": "ap-south-1",
+                "RegionEndpoint": "vpc.ap-south-1.aliyuncs.com",
+                "LocalName":"\xe4\xba\x9a\xe5\xa4\xaa\xe5\x8d\x97\xe9\x83\xa8 1 (\xe5\xad\x9f\xe4\xb9\xb0)"
+            },
+            {
+                "RegionId": "us-east-1",
+                "RegionEndpoint": "vpc.aliyuncs.com",
+                "LocalName":"\xe7\xbe\x8e\xe5\x9b\xbd\xe4\xb8\x9c\xe9\x83\xa8 1 (\xe5\xbc\x97\xe5\x90\x89\xe5\xb0\xbc\xe4\xba\x9a)"
+            },
+            {
+                "RegionId": "us-west-1",
+                "RegionEndpoint": "vpc.aliyuncs.com",
+                "LocalName":"\xe7\xbe\x8e\xe5\x9b\xbd\xe8\xa5\xbf\xe9\x83\xa8 1 (\xe7\xa1\x85\xe8\xb0\xb7)"
+            },
+            {
+                "RegionId": "me-east-1",
+                "RegionEndpoint": "vpc.me-east-1.aliyuncs.com",
+                "LocalName":"\xe4\xb8\xad\xe4\xb8\x9c\xe4\xb8\x9c\xe9\x83\xa8 1 (\xe8\xbf\xaa\xe6\x8b\x9c)"
+            },
+            {
+                "RegionId": "eu-central-1",
+                "RegionEndpoint": "vpc.eu-central-1.aliyuncs.com",
+                "LocalName":"\xe6\xac\xa7\xe6\xb4\xb2\xe4\xb8\xad\xe9\x83\xa8 1 (\xe6\xb3\x95\xe5\x85\xb0\xe5\x85\x8b\xe7\xa6\x8f)"
+            },
+            {
+                "RegionId": "ap-southeast-6",
+                "RegionEndpoint": "vpc.ap-southeast-6.aliyuncs.com",
+                "LocalName":"\xe8\x8f\xb2\xe5\xbe\x8b\xe5\xae\xbe\xef\xbc\x88\xe9\xa9\xac\xe5\xb0\xbc\xe6\x8b\x89\xef\xbc\x89"
+            },
+            {
+                "RegionId": "cn-chengdu",
+                "RegionEndpoint": "vpc.cn-chengdu.aliyuncs.com",
+                "LocalName":"\xe8\xa5\xbf\xe5\x8d\x971\xef\xbc\x88\xe6\x88\x90\xe9\x83\xbd\xef\xbc\x89"
+            },
+            {
+                "RegionId": "ap-southeast-7",
+                "RegionEndpoint": "vpc.ap-southeast-7.aliyuncs.com",
+                "LocalName":"\xe6\xb3\xb0\xe5\x9b\xbd\xef\xbc\x88\xe6\x9b\xbc\xe8\xb0\xb7\xef\xbc\x89"
+            },
+            {
+                "RegionId": "eu-west-1",
+                "RegionEndpoint": "vpc.eu-west-1.aliyuncs.com",
+                "LocalName":"\xe8\x8b\xb1\xe5\x9b\xbd\xef\xbc\x88\xe4\xbc\xa6\xe6\x95\xa6\xef\xbc\x89"
+            },
+            {
+                "RegionId": "ap-northeast-2",
+                "RegionEndpoint": "vpc.ap-northeast-2.aliyuncs.com",
+                "LocalName":"\xe9\x9f\xa9\xe5\x9b\xbd\xef\xbc\x88\xe9\xa6\x96\xe5\xb0\x94\xef\xbc\x89"
+            },
+            {
+                "RegionId": "cn-heyuan",
+                "RegionEndpoint": "vpc.cn-heyuan.aliyuncs.com",
+                "LocalName":"\xe5\x8d\x8e\xe5\x8d\x972\xef\xbc\x88\xe6\xb2\xb3\xe6\xba\x90\xef\xbc\x89"
+            }
+        ]
+    }
+}

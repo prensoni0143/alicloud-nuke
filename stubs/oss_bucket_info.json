@@ -1,0 +1,22 @@
+[
+    {
+        "BucketName": "bucket-ap-south-1-913pnrsa",
+        "BucketLocation": "oss-ap-south-1",
+        "CreationTime": 1653520129
+    },
+    {
+        "BucketName": "bucket-us-east-913pnrsa",
+        "BucketLocation-us-east-1",
+        "CreationTime": 1653520129
+    },
+    {
+        "BucketName": "test-asdxzagf",
+        "BucketLocation": "oss-us-east-1",
+        "CreationTime": 1653519876
+    },
+    {
+        "BucketName": "test-xereasasa",
+        "BucketLocation": "oss-ap-south-1",
+        "CreationTime": 1653519957
+    }
+]

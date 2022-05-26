@@ -1,0 +1,155 @@
+{
+    "TotalCount": 14,
+    "PageSize": 5,
+    "RequestId": "5AAF519E-6E8C-53B4-94FA-9015E74BED10",
+    "PageNumber": 2,
+    "VSwitches": {
+        "VSwitch": [
+            {
+                "Status": "Available",
+                "IsDefault": false,
+                "Description": "New VSwitch created by Terrafrom module terraform-alicloud-vpc.",
+                "ResourceGroupId": "rg-aekz2etmioqn7dq",
+                "ZoneId": "cn-zhangjiakou-c",
+                "NetworkAclId": "",
+                "AvailableIpAddressCount": 8188,
+                "VSwitchId": "vsw-8vbi04fqmbmliq43vy0og",
+                "CidrBlock": "172.17.224.0/19",
+                "RouteTable": {
+                    "RouteTableId": "vtb-8vb0wgx02wbwdr33mc7hq",
+                    "RouteTableType": "System"
+                },
+                "VpcId": "vpc-8vbvawwowibhpv0f35td8",
+                "OwnerId": 5987653222476286,
+                "CreationTime": "2022-05-23T11:30:40Z",
+                "VSwitchName": "TF-VSwitch014",
+                "Ipv6CidrBlock": "",
+                "Tags": {
+                    "Tag": [
+                        {
+                            "Value": "TF-VSwitch014",
+                            "Key": "Name"
+                        }
+                    ]
+                },
+                "ShareType": ""
+            },
+            {
+                "Status": "Available",
+                "IsDefault": false,
+                "Description": "New VSwitch created by Terrafrom module terraform-alicloud-vpc.",
+                "ResourceGroupId": "rg-aekz2etmioqn7dq",
+                "ZoneId": "cn-zhangjiakou-c",
+                "NetworkAclId": "",
+                "AvailableIpAddressCount": 4092,
+                "VSwitchId": "vsw-8vbxkbze3roexbkwhc538",
+                "CidrBlock": "172.17.128.0/20",
+                "RouteTable": {
+                    "RouteTableId": "vtb-8vb0wgx02wbwdr33mc7hq",
+                    "RouteTableType": "System"
+                },
+                "VpcId": "vpc-8vbvawwowibhpv0f35td8",
+                "OwnerId": 5987653222476286,
+                "CreationTime": "2022-05-23T11:30:40Z",
+                "VSwitchName": "TF-VSwitch009",
+                "Ipv6CidrBlock": "",
+                "Tags": {
+                    "Tag": [
+                        {
+                            "Value": "TF-VSwitch009",
+                            "Key": "Name"
+                        }
+                    ]
+                },
+                "ShareType": ""
+            },
+            {
+                "Status": "Available",
+                "IsDefault": false,
+                "Description": "New VSwitch created by Terrafrom module terraform-alicloud-vpc.",
+                "ResourceGroupId": "rg-aekz2etmioqn7dq",
+                "ZoneId": "cn-zhangjiakou-b",
+                "NetworkAclId": "",
+                "AvailableIpAddressCount": 4092,
+                "VSwitchId": "vsw-8vbcbczk4l1qpqg5kbtbu",
+                "CidrBlock": "172.17.112.0/20",
+                "RouteTable": {
+                    "RouteTableId": "vtb-8vb0wgx02wbwdr33mc7hq",
+                    "RouteTableType": "System"
+                },
+                "VpcId": "vpc-8vbvawwowibhpv0f35td8",
+                "OwnerId": 5987653222476286,
+                "CreationTime": "2022-05-23T11:30:37Z",
+                "VSwitchName": "TF-VSwitch008",
+                "Ipv6CidrBlock": "",
+                "Tags": {
+                    "Tag": [
+                        {
+                            "Value": "TF-VSwitch008",
+                            "Key": "Name"
+                        }
+                    ]
+                },
+                "ShareType": ""
+            },
+            {
+                "Status": "Available",
+                "IsDefault": false,
+                "Description": "New VSwitch created by Terrafrom module terraform-alicloud-vpc.",
+                "ResourceGroupId": "rg-aekz2etmioqn7dq",
+                "ZoneId": "cn-zhangjiakou-b",
+                "NetworkAclId": "",
+                "AvailableIpAddressCount": 4092,
+                "VSwitchId": "vsw-8vb5d6ibge8wc6cf3ou3j",
+                "CidrBlock": "172.17.160.0/20",
+                "RouteTable": {
+                    "RouteTableId": "vtb-8vb0wgx02wbwdr33mc7hq",
+                    "RouteTableType": "System"
+                },
+                "VpcId": "vpc-8vbvawwowibhpv0f35td8",
+                "OwnerId": 5987653222476286,
+                "CreationTime": "2022-05-23T11:30:36Z",
+                "VSwitchName": "TF-VSwitch011",
+                "Ipv6CidrBlock": "",
+                "Tags": {
+                    "Tag": [
+                        {
+                            "Value": "TF-VSwitch011",
+                            "Key": "Name"
+                        }
+                    ]
+                },
+                "ShareType": ""
+            },
+            {
+                "Status": "Available",
+                "IsDefault": false,
+                "Description": "New VSwitch created by Terrafrom module terraform-alicloud-vpc.",
+                "ResourceGroupId": "rg-aekz2etmioqn7dq",
+                "ZoneId": "cn-zhangjiakou-a",
+                "NetworkAclId": "",
+                "AvailableIpAddressCount": 4092,
+                "VSwitchId": "vsw-8vbmxuh7obqbqa9lt3v0i",
+                "CidrBlock": "172.17.48.0/20",
+                "RouteTable": {
+                    "RouteTableId": "vtb-8vb0wgx02wbwdr33mc7hq",
+                    "RouteTableType": "System"
+                },
+                "VpcId": "vpc-8vbvawwowibhpv0f35td8",
+                "OwnerId": 5987653222476286,
+                "CreationTime": "2022-05-23T11:30:36Z",
+                "VSwitchName": "TF-VSwitch004",
+                "Ipv6CidrBlock": "",
+                "Tags": {
+                    "Tag": [
+                        {
+                            "Value": "TF-VSwitch004",
+                            "Key": "Name"
+                        }
+                    ]
+                },
+                "ShareType": ""
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "TotalCount": 1,
+    "NextToken": "",
+    "PageSize": 5,
+    "RequestId": "F983E764-3725-3D21-9ADE-873E6BBAAB94",
+    "PageNumber": 1,
+    "Snapshots": {
+        "Snapshot": [
+            {
+                "Status": "accomplished",
+                "InstantAccess": False,
+                "Progress": "100%",
+                "Usage": "none",
+                "Description": "Test For Terraform",
+                "Category": "standard",
+                "KMSKeyId": "",
+                "ProductCode": "",
+                "Encrypted": True,
+                "RetentionDays": 20,
+                "SnapshotName": "tf-test",
+                "SourceDiskId": "d-0xii6sgavkktmy5l2avy",
+                "SourceStorageType": "disk",
+                "SnapshotId": "s-0xi7ud6pvh35bvsgh4hw",
+                "SnapshotSN": "27985-39457361-4500190",
+                "SourceDiskSize": 20,
+                "CreationTime": "2022-05-26T04:14:49Z",
+                "LastModifiedTime": "2022-05-26T04:15:03Z",
+                "SnapshotType": "user",
+                "SourceDiskType": "data",
+                "Tags": {
+                    "Tag": [
+                        {
+                            "TagKey": "For",
+                            "TagValue": "Acceptance-test"
+                        },
+                        {
+                            "TagKey": "Created",
+                            "TagValue": "TF"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
