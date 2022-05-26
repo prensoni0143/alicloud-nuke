@@ -23,7 +23,7 @@ class OSS(Command):
         """
         region_id = self.client.get_region_id()
         auth = oss2.Auth(self.client.get_access_key(), self.client.get_access_secret())
-        service = oss2.Service(auth, f'https://oss-{region_id}.aliyuncs.com')
+        service = oss2.Service(auth, f"http://oss-{region_id}.aliyuncs.com")
 
         results = []
 
@@ -45,9 +45,12 @@ class OSS(Command):
             )
         return results
 
-    def delete_bucket(self, name:str, region_id:str):
+    def delete_bucket(self, name:str, oss_region_id:str):
+        """ 
+        :param oss_region_id: BucketLocation above, format "oss-us-east-1"
+        """
         auth = oss2.Auth(self.client.get_access_key(), self.client.get_access_secret())
-        bucket = oss2.Bucket(auth, f'https://oss-{region_id}.aliyuncs.com', name)
+        bucket = oss2.Bucket(auth, f"http://{oss_region_id}.aliyuncs.com", name)
 
         try:
             # Delete the bucket.
