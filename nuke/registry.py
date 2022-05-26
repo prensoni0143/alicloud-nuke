@@ -3,6 +3,7 @@ from typing import Dict, List
 from aliyunsdkcore.client import AcsClient
 
 from nuke.ali.base import Command
+from nuke.ali.disk import Disk
 from nuke.ali.ecs import ECS
 from nuke.ali.oss import OSS
 from nuke.ali.sg import SecurityGroup
@@ -23,6 +24,7 @@ def register():
     # update global command_registry
     register_command(Switch.name, Switch)
     register_command(VPC.name, VPC)
+    register_command(Disk.name, Disk)
     register_command(ECS.name, ECS)
     register_command(OSS.name, OSS)
     register_command(SecurityGroup.name, SecurityGroup)

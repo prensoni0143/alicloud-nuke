@@ -50,6 +50,6 @@ class SecurityGroup(Command):
             response_json = json.loads(response)
             return response_json
         except ServerException as e:
-            print(f"failed to delete: {e}")
+            print(f"client exception: failed to delete: {e}")
         except ClientException as e:
-            print(f"failed to delete: {e}")
+            print(f"server exception: failed to delete: {e}")

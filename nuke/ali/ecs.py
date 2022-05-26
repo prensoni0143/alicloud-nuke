@@ -25,7 +25,6 @@ class ECS(Command):
 
             response: bytes = self.client.do_action_with_exception(request)
             r_json = json.loads(response.decode("UTF-8"))
-            print(r_json)
             total_count = r_json.get("TotalCount")
             data = r_json.get("Instances", {}).get("Instance", [])
 
@@ -52,6 +51,6 @@ class ECS(Command):
             response_json = json.loads(response)
             return response_json
         except ServerException as e:
-            print(f"failed to delete: {e}")
+            print(f"client exception: failed to delete: {e}")
         except ClientException as e:
-            print(f"failed to delete: {e}")
+            print(f"server exception: failed to delete: {e}")
