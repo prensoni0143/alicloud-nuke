@@ -32,6 +32,7 @@ class SecurityGroup(Command):
                     {
                         "SecurityGroupId": x.get("SecurityGroupId", ""),
                         "SecurityGroupName": x.get("SecurityGroupName", ""),
+                        "RegionId": self.client.get_region_id(),
                         "VpcId": x.get("VpcId", ""),
                         "CreationTime": x.get("CreationTime", "")
                     }

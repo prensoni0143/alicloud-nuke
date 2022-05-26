@@ -26,12 +26,13 @@ def main():
             for future in futures:
                 tmp = future.result()
                 results.extend(tmp)
+        pretty_print(resource_name, results)
 
-        print("\nTotal No. of {display_name} ({name}): {number}".format(
-            name=resource_name, display_name=command_registry.get(resource_name).display_name, number=len(results)))
-
-        print_tables(results)
-        write_csv(f"{ROOT}/{resource_name}-{now}.csv", results)
+        for data in results:
+            region_id = data.get("RegionId")
+            client = regional_clients_registry.get(region_id)
+            resource = get_resource_class_instance(resource_name, client)
+            resource.delete(data=data)
 
     for resource_name in ["oss"]:
         results = []
@@ -39,14 +40,20 @@ def main():
             client = regional_clients_registry.get("cn-qingdao")
             oss_cmd: OSS = command_registry.get("oss")(client)
             results = oss_cmd.list_bucket()
-        print("\nTotal No. of {display_name} ({name}): {number}".format(
-            name=resource_name, display_name=command_registry.get(resource_name).display_name, number=len(results)))
-        print_tables(results)
-        write_csv(f"{ROOT}/{resource_name}-{now}.csv", results)
+        pretty_print(resource_name, results)
 
-    #     for item in results:
-    #         print(item)
-    #         oss_cmd.delete_bucket(item.get("BucketName"), item.get("BucketLocation"))
+        for item in results:
+            oss_cmd.delete_bucket(item.get("BucketName"), item.get("BucketLocation"))
+
+
+def pretty_print(resource_name: str, results: List[Dict]):
+    print("\nTotal No. of {display_name} ({name}): {number}".format(
+        name=resource_name,
+        display_name=command_registry.get(resource_name).display_name,
+        number=len(results))
+    )
+    print_tables(results)
+    write_csv(f"{ROOT}/{resource_name}-{now}.csv", results)
 
 
 def write_csv(file_name, results: List[Dict]):
@@ -57,7 +64,8 @@ def write_csv(file_name, results: List[Dict]):
     with open(file_name, 'w', newline='') as outcsv:
         writer = csv.writer(outcsv)
         writer.writerow(headers)
-        writer.writerows(data)    
+        writer.writerows(data)
+
 
 def print_tables(results: List[Dict]):
     if len(results) == 0:
@@ -69,24 +77,17 @@ def print_tables(results: List[Dict]):
 
 def list_resource_in_region(resource_name: str, region_id: str, client: AcsClient) -> List[Dict[str, str]]:
     # print(f"list {resource_name} in {region_id}")
-    resource_class: type = command_registry.get(resource_name)
-    if not resource_class:
-        raise ValueError(f"does not support resource: {resource_name}")
-    resource = resource_class(client)
-
+    resource = get_resource_class_instance(resource_name, client)
     items = resource.list()
     return items
 
 
-def process_resource(region_id: str, resource: Command):
-    items = resource.list()
-    print(resource.display_name)
-    if items:
-        print(len(items))
-        print(items)
-
-    # for data in items:
-    #     resource.delete(data=data)
+def get_resource_class_instance(resource_name: str, client: AcsClient) -> Command:
+    resource_class: type = command_registry.get(resource_name)
+    if not resource_class:
+        raise ValueError(f"does not support resource: {resource_name}")
+    resource = resource_class(client)
+    return resource
 
 
 if __name__ == '__main__':

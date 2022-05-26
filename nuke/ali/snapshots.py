@@ -33,6 +33,7 @@ class Snapshot(Command):
                     {
                         "SnapshotId": x.get("SnapshotId", ""),
                         "SnapshotName": x.get("SnapshotName", ""),
+                        "RegionId": self.client.get_region_id(),
                         "SourceDiskId": x.get("SourceDiskId", ""),
                         "CreationTime": x.get("CreationTime", "")
                     }

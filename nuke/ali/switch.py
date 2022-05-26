@@ -33,6 +33,7 @@ class Switch(Command):
                     {
                         "VSwitchId": x.get("VSwitchId", ""),
                         "VSwitchName": x.get("VSwitchName", ""),
+                        "RegionId": self.client.get_region_id(),
                         "ZoneId": x.get("ZoneId", ""),
                         "CreationTime": x.get("CreationTime", "")
                     }
