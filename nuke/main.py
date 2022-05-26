@@ -4,7 +4,7 @@ from nuke.registry import command_registry, regional_clients_registry
 
 
 def main():
-    for resource_name in ["vpc", "switch"]:
+    for resource_name in ["switch", "vpc"]:
         for region_id, client in regional_clients_registry.items():
             resource_class: type = command_registry.get(resource_name)
             if resource_class and region_id in ["cn-qingdao", "cn-zhangjiakou"]:

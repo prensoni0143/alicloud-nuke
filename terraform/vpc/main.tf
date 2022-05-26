@@ -76,6 +76,19 @@ module "vpc_zjk" {
   }
 }
 
+resource "alicloud_security_group" "group-zjk" {
+  provider = alicloud.zjk
+  name     = "sg-nuke-zjk-01"
+  vpc_id   = module.vpc_zjk.this_vpc_id
+}
+
+
+resource "alicloud_security_group" "group-qd" {
+  provider = alicloud.qd
+  name     = "sg-nuke-qd-01"
+  vpc_id   = module.vpc_qd.this_vpc_id
+}
+
 # output "rg_id" {
 #   value = alicloud_resource_manager_resource_group.this
 # }
