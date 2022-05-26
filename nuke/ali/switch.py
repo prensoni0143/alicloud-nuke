@@ -46,7 +46,7 @@ class Switch(Command):
             request = DeleteVSwitchRequest.DeleteVSwitchRequest()
             request.set_VSwitchId(id)
 
-            print(f"delete switch: {id} ({name})")
+            print(f"delete {self.name}: {id} ({name})")
             response = self.client.do_action_with_exception(request)
             response_json = json.loads(response)
             return response_json

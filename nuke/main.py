@@ -25,22 +25,13 @@ def main():
 
 def process_resource(region_id: str, resource: Command):
     items = resource.list()
+    print(resource.display_name)
     if items:
         print(len(items))
         print(items)
 
     for data in items:
         resource.delete(data=data)
-    
-    # for data in items:
-    #     id = "vsw-m5e3m6icclgmuprwl3b1d"
-    #     if x.get("VSwitchId") == id:
-    #         resource.delete(data=data)
-    
-    # for data in items:
-    #     id = "vpc-m5egw68q0uzjlw3xi4ye1"
-    #     if x.get("VpcId") == id:
-    #         resource.delete(data=data)
 
 
 if __name__ == '__main__':

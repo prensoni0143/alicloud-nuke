@@ -82,11 +82,35 @@ resource "alicloud_security_group" "group-zjk" {
   vpc_id   = module.vpc_zjk.this_vpc_id
 }
 
+resource "alicloud_security_group_rule" "ingress-zjk" {
+  provider          = alicloud.zjk
+  type              = "ingress"
+  ip_protocol       = "tcp"
+  nic_type          = "intranet"
+  policy            = "accept"
+  port_range        = "22/22"
+  priority          = 1
+  security_group_id = alicloud_security_group.group-zjk.id
+  cidr_ip           = "0.0.0.0/0"
+}
+
 
 resource "alicloud_security_group" "group-qd" {
   provider = alicloud.qd
   name     = "sg-nuke-qd-01"
   vpc_id   = module.vpc_qd.this_vpc_id
+}
+
+resource "alicloud_security_group_rule" "ingress-qd" {
+  provider          = alicloud.qd
+  type              = "ingress"
+  ip_protocol       = "tcp"
+  nic_type          = "intranet"
+  policy            = "accept"
+  port_range        = "22/22"
+  priority          = 1
+  security_group_id = alicloud_security_group.group-qd.id
+  cidr_ip           = "0.0.0.0/0"
 }
 
 # output "rg_id" {
