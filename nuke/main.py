@@ -12,21 +12,12 @@ from nuke.ali.base import Command
 from nuke.ali.oss import OSS
 from nuke.registry import command_registry, regional_clients_registry
 
-now = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-
 ROOT = os.path.dirname(os.path.abspath(__file__))
+now = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+
 
 def main():
-    print(now)
     for resource_name in ["snapshot", "ecs", "disk", "sg", "switch", "vpc"]:
-        # for region_id, client in regional_clients_registry.items():
-        #     resource_class: type = command_registry.get(resource_name)
-        #     # if resource_class and region_id in ["us-east-1", "cn-qingdao", "cn-zhangjiakou"] or True:
-        #     if resource_class and region_id in ["us-east-1"]:
-        #         resource = resource_class(client)
-        #         process_resource(region_id=region_id, resource=resource)
-        # sleep(5)
-
         results = []
         with ThreadPoolExecutor(max_workers=10) as executor:
             futures = [executor.submit(list_resource_in_region, resource_name, region_id, client)
@@ -39,6 +30,42 @@ def main():
         print("\nTotal No. of {display_name} ({name}): {number}".format(
             name=resource_name, display_name=command_registry.get(resource_name).display_name, number=len(results)))
 
+        print_tables(results)
+        write_csv(f"{ROOT}/{resource_name}-{now}.csv", results)
+
+    for resource_name in ["oss"]:
+        results = []
+        if resource_name == "oss":
+            client = regional_clients_registry.get("cn-qingdao")
+            oss_cmd: OSS = command_registry.get("oss")(client)
+            results = oss_cmd.list_bucket()
+        print("\nTotal No. of {display_name} ({name}): {number}".format(
+            name=resource_name, display_name=command_registry.get(resource_name).display_name, number=len(results)))
+        print_tables(results)
+        write_csv(f"{ROOT}/{resource_name}-{now}.csv", results)
+
+    #     for item in results:
+    #         print(item)
+    #         oss_cmd.delete_bucket(item.get("BucketName"), item.get("BucketLocation"))
+
+
+def write_csv(file_name, results: List[Dict]):
+    if len(results) == 0:
+        return
+    data = [x.values() for x in results]
+    headers = results[0].keys()
+    with open(file_name, 'w', newline='') as outcsv:
+        writer = csv.writer(outcsv)
+        writer.writerow(headers)
+        writer.writerows(data)    
+
+def print_tables(results: List[Dict]):
+    if len(results) == 0:
+        return
+    data = [x.values() for x in results]
+    headers = results[0].keys()
+    print(tabulate(data, headers=headers))
+
 
 def list_resource_in_region(resource_name: str, region_id: str, client: AcsClient) -> List[Dict[str, str]]:
     # print(f"list {resource_name} in {region_id}")
@@ -48,8 +75,6 @@ def list_resource_in_region(resource_name: str, region_id: str, client: AcsClien
     resource = resource_class(client)
 
     items = resource.list()
-    # print("{name} ({display_name}): {number}".format(
-    #     name=resource.name, display_name=resource.display_name, number=len(items)))
     return items
 
 
