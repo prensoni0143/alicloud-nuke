@@ -7,6 +7,7 @@ from nuke.ali.disk import Disk
 from nuke.ali.ecs import ECS
 from nuke.ali.oss import OSS
 from nuke.ali.sg import SecurityGroup
+from nuke.ali.snapshots import Snapshot
 from nuke.ali.switch import Switch
 from nuke.ali.util import get_regional_client, list_all_regions
 from nuke.ali.vpc import VPC
@@ -28,6 +29,7 @@ def register():
     register_command(ECS.name, ECS)
     register_command(OSS.name, OSS)
     register_command(SecurityGroup.name, SecurityGroup)
+    register_command(Snapshot.name, Snapshot)
 
     # update global regional_clients_registry
     region_ids = list_all_regions()

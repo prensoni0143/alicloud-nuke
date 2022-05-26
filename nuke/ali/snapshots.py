@@ -3,14 +3,14 @@ from typing import Dict, List
 
 from aliyunsdkcore.acs_exception.exceptions import (ClientException,
                                                     ServerException)
-from aliyunsdkecs.request.v20140526 import (DescribeInstancesRequest,
-                                            DeleteInstanceRequest)
+from aliyunsdkecs.request.v20140526 import (DeleteSnapshotRequest,
+                                            DescribeSnapshotsRequest)
 from nuke.ali.base import Command
 
 
-class ECS(Command):
-    name = "ecs"
-    display_name = "Elastic Compute Service"
+class Snapshot(Command):
+    name = "snapshot"
+    display_name = "Snapshot"
 
     def list(self) -> List[Dict[str, str]]:
         results = []
@@ -19,22 +19,21 @@ class ECS(Command):
 
         while total_count > self.PAGE_SIZE * page_count or total_count == -1:
             page_count = page_count + 1
-            request = DescribeInstancesRequest.DescribeInstancesRequest()
+            request = DescribeSnapshotsRequest.DescribeSnapshotsRequest()
             request.set_PageSize(self.PAGE_SIZE)
             request.set_PageNumber(page_count)
 
             response: bytes = self.client.do_action_with_exception(request)
             r_json = json.loads(response.decode("UTF-8"))
             total_count = r_json.get("TotalCount")
-            data = r_json.get("Instances", {}).get("Instance", [])
+            data = r_json.get("Snapshots", {}).get("Snapshot", [])
 
             for x in data:
                 results.append(
                     {
-                        "InstanceId": x.get("InstanceId", ""),
-                        "InstanceName": x.get("InstanceName", ""),
-                        "Status": x.get("Status", ""),
-                        "RegionId": x.get("RegionId", ""),
+                        "SnapshotId": x.get("SnapshotId", ""),
+                        "SnapshotName": x.get("SnapshotName", ""),
+                        "SourceDiskId": x.get("SourceDiskId", ""),
                         "CreationTime": x.get("CreationTime", "")
                     }
                 )
@@ -42,13 +41,10 @@ class ECS(Command):
 
     def delete(self, data: Dict[str, str]):
         try:
-            if data.get("Status") == "Running":
-                print("WARNING: ECS instance is running, please stop it before deleting it.")
-                return
-            id = data.get("InstanceId")
-            name = data.get("InstanceName")
-            request = DeleteInstanceRequest.DeleteInstanceRequest()
-            request.set_InstanceId(id)
+            id = data.get("SnapshotId")
+            name = data.get("SnapshotName")
+            request = DeleteSnapshotRequest.DeleteSnapshotRequest()
+            request.set_SnapshotId(id)
 
             print(f"delete {self.name}: {id} ({name})")
             response = self.client.do_action_with_exception(request)

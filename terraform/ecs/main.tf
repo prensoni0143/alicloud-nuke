@@ -56,10 +56,34 @@ resource "alicloud_instance" "instance" {
   vswitch_id                 = module.vpc.this_vswitch_ids[0]
   internet_max_bandwidth_out = 2
   data_disks {
-    name        = "disk2"
+    name        = "disk2-xagasr"
     size        = 20
     category    = "cloud_efficiency"
-    description = "disk2"
+    description = "disk2-xagasr"
     encrypted   = true
   }
+}
+
+data "alicloud_ecs_disks" "ecs_data" {
+  disk_name = "disk2-xagasr"
+}
+
+resource "alicloud_ecs_snapshot" "default" {
+  category       = "standard"
+  description    = "Test For Terraform"
+  disk_id        = data.alicloud_ecs_disks.ecs_data.ids[0]
+  retention_days = "20"
+  snapshot_name  = "tf-test"
+  tags = {
+    Created = "TF"
+    For     = "Acceptance-test"
+  }
+}
+
+output "disk_name" {
+  value = alicloud_instance.instance.data_disks[0].name
+}
+
+output "disk_id" {
+  value = data.alicloud_ecs_disks.ecs_data.ids[0]
 }
