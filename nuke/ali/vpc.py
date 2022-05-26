@@ -43,10 +43,11 @@ class VPC(Command):
     def delete(self, data: Dict[str, str]):
         try:
             id = data.get("VpcId")
+            name = data.get("VpcName")
             request = DeleteVpcRequest.DeleteVpcRequest()
             request.set_VpcId(id)
 
-            print(f"delete vpc: {data}")
+            print(f"delete vpc: {id} ({name})")
             response = self.client.do_action_with_exception(request)
             response_json = json.loads(response)
             return response_json
