@@ -3,7 +3,7 @@ from typing import Dict, List
 
 import oss2
 from nuke.ali.base import Command
-from oss2.models import SimplifiedBucketInfo
+from oss2.models import SimplifiedBucketInfo, SimplifiedObjectInfo
 
 
 class OSS(Command):
@@ -22,41 +22,52 @@ class OSS(Command):
         """unlick most resources, this method lists all the buckets in all regions.
         """
         region_id = self.client.get_region_id()
-        auth = oss2.Auth(self.client.get_access_key(), self.client.get_access_secret())
+        auth = oss2.Auth(self.client.get_access_key(),
+                         self.client.get_access_secret())
         service = oss2.Service(auth, f"http://oss-{region_id}.aliyuncs.com")
 
         results = []
 
         # List all buckets that belong to the current Alibaba Cloud account.
+        b: SimplifiedBucketInfo
         for b in oss2.BucketIterator(service, max_keys=50):
-            b_info: SimplifiedBucketInfo = b
             #  This API returns timestamp (1653519957)
             #  while other APIs return time (2022-05-23T11:30:40Z).
-            timestamp = b_info.creation_date
-            create_time = datetime.fromtimestamp(timestamp).strftime("%Y-%m-%dT%H:%M:%SZ")
+            timestamp = b.creation_date
+            create_time = datetime.fromtimestamp(
+                timestamp).strftime("%Y-%m-%dT%H:%M:%SZ")
 
             #  OSS does not have a bucket Id, as bucket name is global unique
             results.append(
                 {
-                    "BucketName": b_info.name,
-                    "BucketLocation": b_info.location,
+                    "BucketName": b.name,
+                    "BucketLocation": b.location,
                     "CreationTime": create_time
                 }
             )
         return results
 
-    def delete_bucket(self, name:str, oss_region_id:str):
+    def delete_bucket(self, bucket_name: str, oss_region_id: str):
         """ 
         :param oss_region_id: BucketLocation above, format "oss-us-east-1"
         """
-        auth = oss2.Auth(self.client.get_access_key(), self.client.get_access_secret())
-        bucket = oss2.Bucket(auth, f"http://{oss_region_id}.aliyuncs.com", name)
+        auth = oss2.Auth(self.client.get_access_key(),
+                         self.client.get_access_secret())
+        bucket = oss2.Bucket(
+            auth, f"http://{oss_region_id}.aliyuncs.com", bucket_name)
 
         try:
-            # Delete the bucket.
-            print(f"delete oss bucket: {name}")
+
+            print(f"delete oss bucket: {bucket_name}")
+            self.empty_bucket_objects(bucket=bucket)
             bucket.delete_bucket()
         except oss2.exceptions.BucketNotEmpty:
-            print(f"error: bucket {name} is not empty.")
+            print(f"error: bucket {bucket_name} is not empty.")
         except oss2.exceptions.NoSuchBucket:
-            print(f"bucket {name} does not exist")
+            print(f"bucket {bucket_name} does not exist")
+
+    def empty_bucket_objects(self, bucket: oss2.Bucket):
+        print("empty objects in bucket")
+        obj: SimplifiedObjectInfo
+        for obj in oss2.ObjectIterator(bucket):
+            bucket.delete_object(obj.key)
