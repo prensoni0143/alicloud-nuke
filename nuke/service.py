@@ -16,7 +16,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = f"{ROOT}/.."
 now = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
 
-default_targets = ["snapshot", "ecs", "disk", "sg", "switch", "vpc", "oss"]
+default_targets = ["ecs", "disk", "snapshot", "sg", "switch", "vpc", "oss"]
 resources_list: Dict[str, List[Dict[str, str]]] = {}
 
 
@@ -120,4 +120,4 @@ def get_resource_class_instance(resource_name: str, client: AcsClient) -> Comman
 
 if __name__ == '__main__':
     list_resources()
-    delete_resources(["snapshot", "ecs", "disk", "sg", "switch", "vpc", "oss"])
+    # delete_resources(["snapshot", "ecs", "disk", "sg", "switch", "vpc", "oss"])
