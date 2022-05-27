@@ -117,6 +117,10 @@ resource "alicloud_security_group_rule" "ingress-qd" {
 #   value = alicloud_resource_manager_resource_group.this
 # }
 
-output "vpc_id" {
+output "vpc_qd_id" {
   value = module.vpc_qd.this_vpc_id
+}
+
+output "vpc_zjk_id" {
+  value = module.vpc_zjk.this_vpc_id
 }

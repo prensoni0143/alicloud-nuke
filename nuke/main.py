@@ -13,37 +13,65 @@ from nuke.ali.oss import OSS
 from nuke.registry import command_registry, regional_clients_registry
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = f"{ROOT}/.."
 now = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
 
+default_targets = ["snapshot", "ecs", "disk", "sg", "switch", "vpc", "oss"]
+resources_list: Dict[str, List[Dict[str, str]]] = {}
 
-def main():
-    for resource_name in ["snapshot", "ecs", "disk", "sg", "switch", "vpc"]:
+
+def list_resources(resource_types: List[str] = default_targets):
+    print("start listing resources")
+    for resource_name in resource_types:
         results = []
-        with ThreadPoolExecutor(max_workers=10) as executor:
-            futures = [executor.submit(list_resource_in_region, resource_name, region_id, client)
-                       for region_id, client in regional_clients_registry.items()]
 
-            for future in futures:
-                tmp = future.result()
-                results.extend(tmp)
-        pretty_print(resource_name, results)
+        if resource_name in ["snapshot", "ecs", "disk", "sg", "switch", "vpc"]:
+            with ThreadPoolExecutor(max_workers=10) as executor:
+                futures = [
+                    executor.submit(
+                        list_resource_in_region, resource_name, region_id, client
+                    )
+                    for region_id, client in regional_clients_registry.items()
+                ]
 
-        for data in results:
-            region_id = data.get("RegionId")
-            client = regional_clients_registry.get(region_id)
-            resource = get_resource_class_instance(resource_name, client)
-            resource.delete(data=data)
-
-    for resource_name in ["oss"]:
-        results = []
-        if resource_name == "oss":
+                for future in futures:
+                    tmp = future.result()
+                    results.extend(tmp)
+        elif resource_name in ["oss"]:
             client = regional_clients_registry.get("cn-qingdao")
             oss_cmd: OSS = command_registry.get("oss")(client)
             results = oss_cmd.list_bucket()
-        pretty_print(resource_name, results)
+        else:
+            raise NotImplementedError(
+                f"does not support resource: {resource_name}")
 
-        for item in results:
-            oss_cmd.delete_bucket(item.get("BucketName"), item.get("BucketLocation"))
+        pretty_print(resource_name, results)
+        resources_list[resource_name] = results
+
+
+def delete_resources(resource_types: List[str]):
+    print("\n start deleting resources")
+    for resource_name in resource_types:
+        results = resources_list.get(resource_name, [])
+
+        if resource_name in ["snapshot", "ecs", "disk", "sg", "switch", "vpc"]:
+            for data in results:
+                region_id = data.get("RegionId")
+                client = regional_clients_registry.get(region_id)
+                resource = get_resource_class_instance(resource_name, client)
+                resource.delete(data=data)
+        elif resource_name in ["oss"]:
+            for data in results:
+                client = regional_clients_registry.get("cn-qingdao")
+                oss_cmd: OSS = command_registry.get("oss")(client)
+                oss_cmd.delete_bucket(
+                    data.get("BucketName"), data.get("BucketLocation"))
+        else:
+            raise NotImplementedError(
+                f"does not support resource: {resource_name}")
+
+        if len(results) > 0:
+            sleep(5)
 
 
 def pretty_print(resource_name: str, results: List[Dict]):
@@ -53,7 +81,7 @@ def pretty_print(resource_name: str, results: List[Dict]):
         number=len(results))
     )
     print_tables(results)
-    write_csv(f"{ROOT}/{resource_name}-{now}.csv", results)
+    write_csv(f"{OUTPUT_DIR}/{resource_name}-{now}.csv", results)
 
 
 def write_csv(file_name, results: List[Dict]):
@@ -91,4 +119,5 @@ def get_resource_class_instance(resource_name: str, client: AcsClient) -> Comman
 
 
 if __name__ == '__main__':
-    main()
+    list_resources()
+    delete_resources(["snapshot", "ecs", "disk", "sg", "switch", "vpc", "oss"])
