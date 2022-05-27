@@ -2,7 +2,12 @@
 
 The `ali-cloud-nuke` CLI supports 
 - Delete all resources (6 to 8 that we cover)
-- Delete a particular type of resources, such as `ecs`, `oss`, `vpc`.
+- Delete a particular type of resource, such as `ecs`, `oss`, `vpc`.
+
+To delete a resource, we need to delete its dependencies. We validated the following dependencies.
+- empty `oss bucket objects`, then delete an `oss bucket`
+- delete `disk`, `sg`, then `ecs`
+- delete `switch`, `sg` then `vpc`
 
 ## Run ali-cloud-nuke CLI
 
@@ -11,7 +16,27 @@ The `ali-cloud-nuke` CLI supports
 set ALICLOUD_ACCESS_KEY=xxxxx
 set ALICLOUD_SECRET_KEY=xxxxxxx
 
+# download dependencies
+pip install -r requirements.txt
+
 python -m nuke.cli --help
+```
+
+## Build .exe CLI
+
+```bash
+# download dependencies
+pip install -r requirements.txt
+
+# build exe files
+pyinstaller nuke/cli.py  --name ali-cloud-nuke --clean
+
+set ALICLOUD_ACCESS_KEY=xxxxx
+set ALICLOUD_SECRET_KEY=xxxxxxx
+
+# ali-cloud-nuke folder contains all dependencies
+# ali-cloud-nuke\ali-cloud-nuke.exe is the executable file
+dist\ali-cloud-nuke\ali-cloud-nuke.exe --help
 ```
 
 ## Example CLI Commands
@@ -38,7 +63,7 @@ ali-cloud-nuke.exe --all --delete
 
 ## Run Terraform to provision resources
 
-Provison a list of resources to test the deletion, and the dependencies.
+Provision of resources to test the deletion, and the dependencies.
 
 ```bash
 # setup account access_key/secret_key
