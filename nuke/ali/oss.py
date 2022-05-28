@@ -19,7 +19,7 @@ class OSS(Command):
             "OSS bucket has different API, as it is Global. Please use delete_bucket() method.")
 
     def list_bucket(self) -> List[Dict[str, str]]:
-        """unlick most resources, this method lists all the buckets in all regions.
+        """unlike most resources, this method lists all the buckets in all regions.
         """
         region_id = self.client.get_region_id()
         auth = oss2.Auth(self.client.get_access_key(),
