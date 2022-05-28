@@ -51,9 +51,11 @@ def list_resources(resource_types: List[str] = default_targets):
 
 def delete_resources(resource_types: List[str]):
     print("\n start deleting resources")
-    for resource_name in resource_types:
-        results = resources_list.get(resource_name, [])
+    for resource_name in default_targets:
+        if resource_name not in resource_types:
+            continue
 
+        results = resources_list.get(resource_name, [])
         if resource_name in ["snapshot", "ecs", "disk", "sg", "switch", "vpc"]:
             for data in results:
                 region_id = data.get("RegionId")

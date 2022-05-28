@@ -6,7 +6,7 @@ The `ali-cloud-nuke` CLI supports
 
 To delete a resource, we need to delete its dependencies. We validated the following dependencies.
 - empty `oss bucket objects`, then delete an `oss bucket`
-- delete `disk`, `sg`, then `ecs`
+- delete `ecs`, then `disk`, `sg`
 - delete `switch`, `sg` then `vpc`
 
 ## Run ali-cloud-nuke CLI

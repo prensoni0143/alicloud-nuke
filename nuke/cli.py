@@ -5,9 +5,10 @@ from nuke.registry import command_registry
 
 
 @click.command()
-@click.option("--resource-type", "-r", prompt="resource-type to list/delete",
-              help="resource type.", type=click.Choice(list(command_registry.keys())), multiple=True)
-@click.option("--all", "all_resources", flag_value=True, default=False, help="include all support resources.")
+@click.option("--resource-type", "-r", type=click.Choice(list(command_registry.keys())),
+              multiple=True, default=[], help="resource type.")
+@click.option("--all", "all_resources", flag_value=True, default=False,
+              help="include all support resources.")
 @click.option("--delete", flag_value=True, default=False,
               help="delete resources.")
 def nuke(resource_type, all_resources, delete):
