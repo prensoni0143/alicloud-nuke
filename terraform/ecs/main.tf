@@ -66,6 +66,10 @@ resource "alicloud_instance" "instance" {
 
 data "alicloud_ecs_disks" "ecs_data" {
   disk_name = "disk2-xagasr"
+
+  depends_on = [
+    alicloud_instance.instance
+  ]
 }
 
 resource "alicloud_ecs_snapshot" "default" {
@@ -78,6 +82,10 @@ resource "alicloud_ecs_snapshot" "default" {
     Created = "TF"
     For     = "Acceptance-test"
   }
+
+  depends_on = [
+    alicloud_instance.instance
+  ]
 }
 
 output "disk_name" {
