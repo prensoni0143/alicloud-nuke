@@ -13,7 +13,7 @@ from nuke.ali.oss import OSS
 from nuke.registry import command_registry, regional_clients_registry
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-OUTPUT_DIR = f"{ROOT}/.."
+OUTPUT_DIR = f"{ROOT}/../"
 now = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
 
 default_targets = ["ecs", "disk", "snapshot", "sg", "switch", "vpc", "oss"]
