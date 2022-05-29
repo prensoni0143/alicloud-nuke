@@ -47,7 +47,7 @@ class Snapshot(Command):
             request = DeleteSnapshotRequest.DeleteSnapshotRequest()
             request.set_SnapshotId(id)
 
-            print(f"delete {self.name}: {id} ({name})")
+            print(f"deleting {self.name}: {id} ({name})")
             response = self.client.do_action_with_exception(request)
             response_json = json.loads(response)
             return response_json

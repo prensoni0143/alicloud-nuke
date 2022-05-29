@@ -57,7 +57,7 @@ class OSS(Command):
             auth, f"http://{oss_region_id}.aliyuncs.com", bucket_name)
 
         try:
-            print(f"delete {self.name} bucket: {bucket_name}")
+            print(f"deleting {self.name} bucket: {bucket_name}")
             self.empty_bucket_objects(bucket=bucket)
             bucket.delete_bucket()
         except oss2.exceptions.BucketNotEmpty:

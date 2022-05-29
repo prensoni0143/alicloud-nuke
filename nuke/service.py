@@ -50,7 +50,7 @@ def list_resources(resource_types: List[str] = default_targets):
 
 
 def delete_resources(resource_types: List[str]):
-    print("\n start deleting resources")
+    print("\nstart deleting resources")
     for resource_name in default_targets:
         if resource_name not in resource_types:
             continue
