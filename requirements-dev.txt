@@ -4,3 +4,8 @@ aliyun-python-sdk-core==2.13.36
 aliyun_python_sdk_vpc==3.0.17
 aliyun-python-sdk-ecs==4.24.19
 oss2==2.4.0
+
+pyinstaller==5.1
+
+autopep8==1.6.0
+pylint==2.13.9

@@ -24,23 +24,6 @@ pip install -r requirements.txt
 python -m nuke.cli --help
 ```
 
-## Build .exe CLI
-
-```bash
-# download dependencies
-pip install -r requirements.txt
-
-# build exe files
-pyinstaller nuke/cli.py  --name ali-cloud-nuke --clean
-
-set ALICLOUD_ACCESS_KEY=xxxxx
-set ALICLOUD_SECRET_KEY=xxxxxxx
-
-# ali-cloud-nuke folder contains all dependencies
-# ali-cloud-nuke\ali-cloud-nuke.exe is the executable file
-dist\ali-cloud-nuke\ali-cloud-nuke.exe --help
-```
-
 ## Example CLI Commands
 
 ```bash
@@ -48,19 +31,19 @@ set ALICLOUD_ACCESS_KEY=xxxxx
 set ALICLOUD_SECRET_KEY=xxxxxxx
 
 # list all ecs resources
-ali-cloud-nuke.exe --resource-type ecs
+python -m nuke.cli --resource-type ecs
 
 # list all ecs, oss resources
-ali-cloud-nuke.exe -r ecs -r vpc
+python -m nuke.cli -r ecs -r vpc
 
 # list all resources
-ali-cloud-nuke.exe --all
+python -m nuke.cli --all
 
 # delete ecs, oss resources
-ali-cloud-nuke.exe -r ecs -r vpc --delete
+python -m nuke.cli -r ecs -r vpc --delete
 
 # delete all resources
-ali-cloud-nuke.exe --all --delete
+python -m nuke.cli --all --delete
 ```
 
 ## Run Terraform to provision resources
