@@ -42,13 +42,11 @@ class ECS(Command):
 
     def delete(self, data: Dict[str, str]):
         try:
-            if data.get("Status") == "Running":
-                print("WARNING: ECS instance is running, please stop it before deleting it.")
-                return
             id = data.get("InstanceId")
             name = data.get("InstanceName")
             request = DeleteInstanceRequest.DeleteInstanceRequest()
             request.set_InstanceId(id)
+            request.set_Force(True)
 
             print(f"deleting {self.name}: {id} ({name})")
             response = self.client.do_action_with_exception(request)
