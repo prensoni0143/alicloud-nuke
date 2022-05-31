@@ -17,8 +17,8 @@ provider "alicloud" {
 }
 
 provider "alicloud" {
-  region = "ap-south-1"
-  alias  = "ap-south-1"
+  region = "cn-qingdao"
+  alias  = "cn-qingdao"
 }
 
 resource "random_string" "this" {
@@ -39,11 +39,11 @@ resource "alicloud_oss_bucket" "bucket-us-east-1" {
   }
 }
 
-resource "alicloud_oss_bucket" "bucket-ap-south-1" {
-  bucket = "bucket-ap-south-1-${resource.random_string.this.id}"
+resource "alicloud_oss_bucket" "bucket-cn-qingdao" {
+  bucket = "bucket-cn-qingdao-${resource.random_string.this.id}"
   acl    = "private"
 
-  provider = alicloud.ap-south-1
+  provider = alicloud.cn-qingdao
 
   server_side_encryption_rule {
     sse_algorithm = "AES256"
@@ -55,6 +55,6 @@ output "bucket-us-east-1" {
   value = alicloud_oss_bucket.bucket-us-east-1.id
 }
 
-output "bucket-ap-south-1" {
-  value = alicloud_oss_bucket.bucket-ap-south-1.id
+output "bucket-cn-qingdao" {
+  value = alicloud_oss_bucket.bucket-cn-qingdao.id
 }

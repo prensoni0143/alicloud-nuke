@@ -57,7 +57,7 @@ class OSS(Command):
             auth, f"http://{oss_region_id}.aliyuncs.com", bucket_name)
 
         try:
-            print(f"delete {self.name} bucket: {bucket_name}")
+            print(f"deleting {self.name} bucket: {bucket_name}")
             self.empty_bucket_objects(bucket=bucket)
             bucket.delete_bucket()
         except oss2.exceptions.BucketNotEmpty:
@@ -66,7 +66,9 @@ class OSS(Command):
             print(f"bucket {bucket_name} does not exist")
 
     def empty_bucket_objects(self, bucket: oss2.Bucket):
-        print("empty objects in bucket")
+        count = 0
         obj: SimplifiedObjectInfo
         for obj in oss2.ObjectIterator(bucket):
             bucket.delete_object(obj.key)
+            count = count + 1
+        print(f"deleted {count} objects in bucket: {bucket.bucket_name}")

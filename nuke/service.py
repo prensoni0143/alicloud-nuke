@@ -5,6 +5,7 @@ from datetime import datetime
 from time import sleep
 from typing import Dict, List
 
+import pandas as pd
 from aliyunsdkcore.client import AcsClient
 from tabulate import tabulate
 
@@ -47,10 +48,12 @@ def list_resources(resource_types: List[str] = default_targets):
 
         pretty_print(resource_name, results)
         resources_list[resource_name] = results
+    
+    write_xlsx(file_name=f"{OUTPUT_DIR}/resources-{now}.xlsx")
 
 
 def delete_resources(resource_types: List[str]):
-    print("\n start deleting resources")
+    print("\nstart deleting resources")
     for resource_name in default_targets:
         if resource_name not in resource_types:
             continue
@@ -83,7 +86,6 @@ def pretty_print(resource_name: str, results: List[Dict]):
         number=len(results))
     )
     print_tables(results)
-    write_csv(f"{OUTPUT_DIR}/{resource_name}-{now}.csv", results)
 
 
 def write_csv(file_name, results: List[Dict]):
@@ -95,6 +97,22 @@ def write_csv(file_name, results: List[Dict]):
         writer = csv.writer(outcsv)
         writer.writerow(headers)
         writer.writerows(data)
+
+
+def write_xlsx(file_name, results: Dict[str, List[Dict[str, str]]] = resources_list):
+    total = 0
+    for k, v in results.items():
+        total = total + len(v)
+    if total == 0:
+        return
+
+    with pd.ExcelWriter(file_name) as writer:
+        for k, v in results.items():
+            if len(v) == 0:
+                continue
+            df = pd.json_normalize(v)
+            df.to_excel(writer, sheet_name=k, index=False)
+    print(f"\ncreated resource report at: {file_name}")
 
 
 def print_tables(results: List[Dict]):
